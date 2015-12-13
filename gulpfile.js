@@ -7,7 +7,7 @@ gulp.devDeps = {};
 var runSequence = require('run-sequence');
 
 gulp.task('default', function(cb) {
-  runSequence('build', 'hash', 'playground', cb);
+  runSequence('build', 'hash', 'playground', 'stampingservice', cb);
 });
 
 gulp.task('serve', function(cb) {
