@@ -13,7 +13,8 @@ function enableCors(response) {
   // the response object supports cross-origin requests
   response.set('Access-Control-Allow-Origin','*');
   response.set('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT');
-  response.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  response.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, ' +
+  'Content-Type, Accept');
 }
 
 function StampingService(options) {
@@ -57,7 +58,7 @@ StampingService.prototype.blockHandler = function(block, add, callback) {
     var tx = txs[i];
     var txid = tx.id;
     var outputs = tx.outputs;
-    var outputScriptHashes = {};
+    // var outputScriptHashes = {};
     var outputLength = outputs.length;
 
     // Loop through every output in the transaction
@@ -65,7 +66,7 @@ StampingService.prototype.blockHandler = function(block, add, callback) {
       var output = outputs[outputIndex];
       var script = output.script;
 
-      if(!script || !script.isDataOut()) {
+      if (!script || !script.isDataOut()) {
         this.node.log.debug('Invalid script');
         continue;
       }
@@ -129,16 +130,16 @@ StampingService.prototype.lookupHash = function(req, res, next) {
   var objArr = [];
 
   stream.on('data', function(data) {
-      // Parse data as matches are found and push it
-      // to the objArr
-      data.key = data.key.split('-');
-      var obj = {
+    // Parse data as matches are found and push it
+    // to the objArr
+    data.key = data.key.split('-');
+    var obj = {
         hash: data.value,
         height: data.key[2],
         txid: data.key[3],
         outputIndex: data.key[4]
       };
-      objArr.push(obj);
+    objArr.push(obj);
   });
 
   var error;
@@ -153,7 +154,7 @@ StampingService.prototype.lookupHash = function(req, res, next) {
   stream.on('close', function() {
     if (error) {
       return res.send(500, error.message);
-    } else if(!objArr.length) {
+    } else if (!objArr.length) {
       return res.send(404);
     }
 
@@ -163,8 +164,9 @@ StampingService.prototype.lookupHash = function(req, res, next) {
       var txid = obj.txid;
       var includeMempool = true;
 
-      node.services.db.getTransactionWithBlockInfo(txid, includeMempool, function(err, transaction) {
-        if (err){
+      node.services.db.getTransactionWithBlockInfo(txid, includeMempool,
+          function(err, transaction) {
+        if (err) {
           return eachCallback(err);
         }
 
@@ -176,7 +178,7 @@ StampingService.prototype.lookupHash = function(req, res, next) {
         return eachCallback();
       });
     }, function doneGrabbingTransactionData(err) {
-      if (err){
+      if (err) {
         return res.send(500, err);
       }
 
@@ -195,8 +197,9 @@ StampingService.prototype.getAddressData = function(req, res, next) {
   enableCors(res);
   var addressService = this.node.services.address;
   var address = req.params.address;
-  addressService.getUnspentOutputs(address, true, function(err, unspentOutputs) {
-    if (err){
+  addressService.getUnspentOutputs(address, true, function(err,
+      unspentOutputs) {
+    if (err) {
       return console.log('err', err);
     }
 
@@ -204,14 +207,14 @@ StampingService.prototype.getAddressData = function(req, res, next) {
   });
 };
 
-StampingService.prototype.sendTransaction = function(req, res, next){
+StampingService.prototype.sendTransaction = function(req, res, next) {
   enableCors(res);
   var serializedTransaction = req.params.transaction;
 
   try {
     this.node.services.bitcoind.sendTransaction(serializedTransaction);
-  } catch(err) {
-    if (err){
+  } catch (err) {
+    if (err) {
       console.log('error sending transaction', err);
       return res.send(500, err);
     }
