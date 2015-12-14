@@ -10,7 +10,7 @@ angular.module('iMadeThis', ['ngFileUpload', 'monospaced.qrcode'])
     function($scope, Upload, $http, $interval) {
 
       var bitcoreServiceBasePath =
-          'http://localhost:3001/stampingservice';
+          'https://localhost:3001/stampingservice';
       var pendingFileHashes = {};
 
       var file; // represents the uploaded file
