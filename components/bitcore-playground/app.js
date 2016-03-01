@@ -26,7 +26,9 @@ app.filter('btc', function(bitcore) {
 .filter('permalink', function(bitcore) {
   return function(data, section) {
     var url = './#/' + section + '?data=' + encodeURI(data);
-    if (url.length > 2083) throw new Error('URL too long')
+    if (url.length > 2083) {
+      throw new Error('URL too long');
+    }
     return url;
   };
 })
@@ -50,7 +52,7 @@ app.directive('exampleCode', function() {
 .directive('autoSelect', function() {
   return {
     link: function(scope, element, attrs) {
-      $(element).focus(function(){
+      $(element).focus(function() {
         $(this).select();
       });
       element.attr('spellcheck', false);
@@ -60,16 +62,16 @@ app.directive('exampleCode', function() {
 .directive('requireTooltip', function() {
   return {
     link: function(scope, element, attrs) {
-     $(document).foundation();
-     $(document).foundation('tooltip', 'reflow');
+      $(document).foundation();
+      $(document).foundation('tooltip', 'reflow');
     }
   };
 })
 .directive('requireModal', function() {
   return {
     link: function(scope, element, attrs) {
-     $(document).foundation();
-     $(document).foundation('reveal', 'reflow');
+      $(document).foundation();
+      $(document).foundation('reveal', 'reflow');
     }
   };
 });
@@ -116,14 +118,14 @@ registerValidator(app, 'address', function(bitcore, value) {
 
 // Sidebar
 app.controller('SideBar', function($scope, $rootScope, $timeout, $location) {
-  $timeout(function(){
+  $timeout(function() {
     $rootScope.showFooter = true;
     $rootScope.$apply();
   }, 100);
 
   $scope.getClass = function(path) {
-    return $location.path().substr(0, path.length) === path ? "current" : "";
-  }
+    return $location.path().substr(0, path.length) === path ? 'current' : '';
+  };
 
 })
 .controller('Network', function($scope, $rootScope, $timeout, bitcore) {

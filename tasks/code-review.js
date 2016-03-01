@@ -10,7 +10,7 @@ var paths = {
       './tasks/*.js',
       './src/**/*.js',
       './components/stampingservice/**/*.js',
-      // './components/bitcore-playground/**/*.js',
+    //   './components/bitcore-playground/**/*.js',
       '!./node_modules/**/*',
       '!./components/stampingservice/components/**/*',
       '!./components/stampingservice/node_modules/**/*'
