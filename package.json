@@ -1,6 +1,6 @@
 {
   "name": "bitcore-website",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "devDependencies": {
     "browser-sync": "^2.9.10",
     "gulp-debug": "^2.1.1",
