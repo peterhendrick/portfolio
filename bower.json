@@ -1,7 +1,7 @@
 {
   "name": "bitcore-website",
   "version": "0.0.1",
-  "homepage": "https://bitcore.io/",
+  "homepage": "https://www.peterjhendrick.com/",
   "private": true,
   "dependencies": {
     "angular": "~1.4.7",
