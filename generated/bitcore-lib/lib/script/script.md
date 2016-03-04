@@ -30,6 +30,7 @@
     * [.getSignatureOperationsCount(use)](#Script+getSignatureOperationsCount) ⇒ <code>number</code>
   * _static_
     * [.buildMultisigOut(publicKeys, threshold, [opts])](#Script.buildMultisigOut) ⇒ <code>[Script](#Script)</code>
+    * [.buildMultisigIn(pubkeys, threshold, signatures, [opts])](#Script.buildMultisigIn) ⇒ <code>[Script](#Script)</code>
     * [.buildP2SHMultisigIn(pubkeys, threshold, signatures, [opts])](#Script.buildP2SHMultisigIn) ⇒ <code>[Script](#Script)</code>
     * [.buildPublicKeyHashOut(to)](#Script.buildPublicKeyHashOut) ⇒ <code>[Script](#Script)</code>
     * [.buildPublicKeyOut()](#Script.buildPublicKeyOut) ⇒ <code>[Script](#Script)</code>
@@ -204,6 +205,21 @@ requiring m of those public keys to spend
 | publicKeys | <code>Array.&lt;PublicKey&gt;</code> | list of all public keys controlling the output |
 | threshold | <code>number</code> | amount of required signatures to spend the output |
 | [opts] | <code>Object</code> | Several options:        - noSorting: defaults to false, if true, don't sort the given                      public keys before creating the script |
+
+<a name="Script.buildMultisigIn"></a>
+### Script.buildMultisigIn(pubkeys, threshold, signatures, [opts]) ⇒ <code>[Script](#Script)</code>
+A new Multisig input script for the given public keys, requiring m of those public keys to spend
+
+**Kind**: static method of <code>[Script](#Script)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pubkeys | <code>Array.&lt;PublicKey&gt;</code> | list of all public keys controlling the output |
+| threshold | <code>number</code> | amount of required signatures to spend the output |
+| signatures | <code>Array</code> | and array of signature buffers to append to the script |
+| [opts] | <code>Object</code> |  |
+| [opts.noSorting] | <code>boolean</code> | don't sort the given public keys before creating the script (false by default) |
+| [opts.cachedMultisig] | <code>[Script](#Script)</code> | don't recalculate the redeemScript |
 
 <a name="Script.buildP2SHMultisigIn"></a>
 ### Script.buildP2SHMultisigIn(pubkeys, threshold, signatures, [opts]) ⇒ <code>[Script](#Script)</code>

@@ -76,9 +76,10 @@ gulp.task('watch', ['build'], function() {
 
   // Playground
   gulp.watch([
-    'components/bitcore-playground/**/*'
+    'components/bitcore-playground/**/*',
+    'components/stampingservice/**/*'
   ], [
-    'playground', gulp.devDeps.reload
+    'playground', 'stampingservice', gulp.devDeps.reload
   ]);
 });
 
