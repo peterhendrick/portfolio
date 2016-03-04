@@ -5,3 +5,5 @@
 *.log
 .publish
 downloads
+components/stampingservice/node_modules
+components/stampingservice/components
