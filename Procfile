@@ -1,1 +1,1 @@
-web: gulp serve:dist
+web: node index.js
