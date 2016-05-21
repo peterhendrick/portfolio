@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     ];
 
 gulp.task('bump', function() {
-    gulp.src(paths)
-        .pipe(bump())
-        .pipe(gulp.dest('./'));
+  gulp.src(paths)
+      .pipe(bump())
+      .pipe(gulp.dest('./'));
 });

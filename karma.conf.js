@@ -13,8 +13,8 @@ module.exports = function(config) {
         // modify to enable additional browsers if available
         var runBrowsers = ['Firefox', 'Chrome'];
         var browsers = [];
-        for(var i = 0; i < runBrowsers.length; i++) {
-          if(~availableBrowser.indexOf(runBrowsers[i])) {
+        for (var i = 0; i < runBrowsers.length; i++) {
+          if (~availableBrowser.indexOf(runBrowsers[i])) {
             browsers.push(runBrowsers[i]);
           }
         }
