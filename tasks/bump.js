@@ -1,12 +1,12 @@
 'use strict';
 
-var gulp = require('gulp'),
-    gulpPlugins = require('gulp-load-plugins'),
-    $ = gulpPlugins(),
-    bump = $.bump,
-    paths = [
+var gulp = require('gulp');
+var gulpPlugins = require('gulp-load-plugins');
+var $ = gulpPlugins();
+var bump = $.bump;
+var paths = [
         './bower.json', './package.json'
-    ];
+];
 
 gulp.task('bump', function() {
   gulp.src(paths)

@@ -14,7 +14,7 @@ module.exports = function(config) {
         var runBrowsers = ['Firefox', 'Chrome'];
         var browsers = [];
         for (var i = 0; i < runBrowsers.length; i++) {
-          if (~availableBrowser.indexOf(runBrowsers[i])) {
+          if (availableBrowser.indexOf(runBrowsers[i])) {
             browsers.push(runBrowsers[i]);
           }
         }
